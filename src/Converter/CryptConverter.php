@@ -30,10 +30,13 @@ class CryptConverter implements Converter
      */
     public function shouldCast($value, $report = false)
     {
-        // Only encrypt string values
-        return $report
-            ? throw new ConvertifyException("Cannot cast non-string value: [$value]")
-            : is_string($value);
+        $castable = is_string($value);
+
+        if (! $castable && $report) {
+            throw new ConvertifyException("Cannot cast non-string value: [$value]");
+        }
+
+        return $castable;
     }
 
     /**
@@ -59,10 +62,13 @@ class CryptConverter implements Converter
      */
     public function shouldUncast($value, $report = false)
     {
-        // Heuristic: encrypted strings are usually base64-encoded
-        return $report
-            ? throw new ConvertifyException("Cannot uncast non-base64 string: [$value]")
-            : is_string($value) && base64_decode($value, true) !== false;
+        $uncastable = is_string($value) && base64_decode($value, true) !== false;
+
+        if (! $uncastable && $report) {
+            throw new ConvertifyException("Cannot uncast non-base64 string: [$value]");
+        }
+
+        return $uncastable;
     }
 
     /**
