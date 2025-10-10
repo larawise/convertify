@@ -49,8 +49,10 @@ class Convertify implements ConvertifyContract
     public function cast($key, $value)
     {
         foreach ($this->converters as $alias => $converter) {
-            if ($converter->shouldCast($key, $value)) {
-                return $converter->cast($key, $value);
+            $instance = $this->resolveConverter($alias);
+
+            if ($instance->shouldCast($key, $value)) {
+                return $instance->cast($key, $value);
             }
         }
 
@@ -99,8 +101,10 @@ class Convertify implements ConvertifyContract
     public function uncast($key, $value)
     {
         foreach ($this->converters as $alias => $converter) {
-            if ($converter->shouldUncast($key, $value)) {
-                return $converter->uncast($key, $value);
+            $instance = $this->resolveConverter($alias);
+
+            if ($instance->shouldUncast($key, $value)) {
+                return $instance->uncast($key, $value);
             }
         }
 
@@ -140,7 +144,7 @@ class Convertify implements ConvertifyContract
             throw new ConvertifyException("No converter registered for alias [$alias]");
         }
 
-        return $converter;
+        return new $converter;
     }
 
     /**
