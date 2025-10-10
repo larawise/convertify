@@ -1,17 +1,22 @@
 <?php
 
 use Larawise\Convertify\Contracts\ConvertifyContract;
-use Larawise\Convertify\Exceptions\ConvertifyException;
 
 if (! function_exists('convertify')) {
     /**
      * Resolve the Convertify service from the container.
      *
+     * @param string|null $converter
+     *
      * @return ConvertifyContract
      */
-    function convertify()
+    function convertify($converter = null)
     {
-        return app('convertify');
+        if (is_null($converter)) {
+            return app('convertify');
+        }
+
+        return app('convertify')->converter($converter);
     }
 }
 
@@ -19,31 +24,14 @@ if (! function_exists('cast')) {
     /**
      * Convert a raw external value into its appropriate PHP-native type.
      *
-     * @param string $key
      * @param mixed $value
+     * @param string|null $converter
      *
      * @return mixed
      */
-    function cast($key, $value)
+    function cast($value, $converter = null)
     {
-        return convertify()->cast($key, $value);
-    }
-}
-
-if (! function_exists('castWithAlias')) {
-    /**
-     * Cast a raw value into a PHP-native format using a specific converter alias.
-     *
-     * @param string $alias
-     * @param string $key
-     * @param mixed $value
-     *
-     * @return mixed
-     * @throws ConvertifyException
-     */
-    function castWithAlias($alias, $key, $value)
-    {
-        return convertify()->castWithAlias($alias, $key, $value);
+        return convertify($converter)->cast($value);
     }
 }
 
@@ -51,30 +39,13 @@ if (! function_exists('uncast')) {
     /**
      * Convert a raw external value into its appropriate PHP-native type.
      *
-     * @param string $key
      * @param mixed $value
+     * @param string|null $converter
      *
      * @return mixed
      */
-    function uncast($key, $value)
+    function uncast($value, $converter = null)
     {
-        return convertify()->uncast($key, $value);
-    }
-}
-
-if (! function_exists('uncastWithAlias')) {
-    /**
-     * Serialize a PHP-native value using a specific converter alias.
-     *
-     * @param string $alias
-     * @param string $key
-     * @param mixed $value
-     *
-     * @return mixed
-     * @throws ConvertifyException
-     */
-    function uncastWithAlias($alias, $key, $value)
-    {
-        return convertify()->uncastWithAlias($alias, $key, $value);
+        return convertify($converter)->uncast($value);
     }
 }
