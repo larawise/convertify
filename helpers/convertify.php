@@ -25,13 +25,14 @@ if (! function_exists('cast')) {
      * Convert a raw external value into its appropriate PHP-native type.
      *
      * @param mixed $value
+     * @param bool $report
      * @param string|null $converter
      *
      * @return mixed
      */
-    function cast($value, $converter = null)
+    function cast($value, $report = false, $converter = null)
     {
-        return convertify($converter)->cast($value);
+        return convertify($converter)->cast($value, $report);
     }
 }
 
@@ -40,12 +41,13 @@ if (! function_exists('uncast')) {
      * Convert a raw external value into its appropriate PHP-native type.
      *
      * @param mixed $value
+     * @param bool $report
      * @param string|null $converter
      *
      * @return mixed
      */
-    function uncast($value, $converter = null)
+    function uncast($value, $report = false, $converter = null)
     {
-        return convertify($converter)->uncast($value);
+        return convertify($converter)->uncast($value, $report);
     }
 }

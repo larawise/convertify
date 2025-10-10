@@ -5,6 +5,7 @@ namespace Larawise\Convertify\Converter;
 use Exception;
 use Illuminate\Support\Facades\Crypt;
 use Larawise\Convertify\Contracts\ConverterContract as Converter;
+use Larawise\Convertify\Exceptions\ConvertifyException;
 
 /**
  * Srylius - The ultimate symphony for technology architecture!
@@ -23,23 +24,27 @@ class CryptConverter implements Converter
      * Determine if the given value should be encrypted.
      *
      * @param mixed $value
+     * @param bool $report
      *
      * @return bool
      */
-    public function shouldCast($value)
+    public function shouldCast($value, $report = false)
     {
         // Only encrypt string values
-        return is_string($value);
+        return $report
+            ? throw new ConvertifyException("Cannot cast non-string value: [$value]")
+            : is_string($value);
     }
 
     /**
      * Encrypt the given value using Laravel's Crypt facade.
      *
      * @param mixed $value
+     * @param bool $report
      *
-     * @return string
+     * @return mixed
      */
-    public function cast($value)
+    public function cast($value, $report = false)
     {
         return Crypt::encryptString($value);
     }
@@ -48,23 +53,27 @@ class CryptConverter implements Converter
      * Determine if the given value should be decrypted.
      *
      * @param mixed $value
+     * @param bool $report
      *
      * @return bool
      */
-    public function shouldUncast($value)
+    public function shouldUncast($value, $report = false)
     {
         // Heuristic: encrypted strings are usually base64-encoded
-        return is_string($value) && base64_decode($value, true) !== false;
+        return $report
+            ? throw new ConvertifyException("Cannot uncast non-base64 string: [$value]")
+            : is_string($value) && base64_decode($value, true) !== false;
     }
 
     /**
      * Decrypt the given value using Laravel's Crypt facade.
      *
      * @param mixed $value
+     * @param bool $report
      *
      * @return mixed
      */
-    public function uncast($value)
+    public function uncast($value, $report = false)
     {
         try {
             return Crypt::decryptString($value);
