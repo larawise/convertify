@@ -48,8 +48,8 @@ class StackConverter implements Converter
     {
         foreach ($this->chain as $converter) {
             // Only apply the converter if it declares support for this value.
-            if ($converter->shouldCast($value)) {
-                $value = $converter->cast($value);
+            if ($converter->shouldCast($value, $report)) {
+                $value = $converter->cast($value, $report);
             }
         }
 
@@ -68,8 +68,8 @@ class StackConverter implements Converter
     {
         foreach ($this->chain as $converter) {
             // Only apply the converter if it declares support for this value.
-            if ($converter->shouldUncast($value)) {
-                $value = $converter->uncast($value);
+            if ($converter->shouldUncast($value, $report)) {
+                $value = $converter->uncast($value, $report);
             }
         }
 
