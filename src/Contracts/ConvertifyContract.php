@@ -43,11 +43,11 @@ interface ConvertifyContract
      * Register a converter with a named alias.
      *
      * @param string $alias
-     * @param ConverterContract $converter
+     * @param <class-string> $converter
      *
      * @return void
      */
-    public function extend($alias, ConverterContract $converter);
+    public function extend($alias, $converter);
 
     /**
      * Convert a PHP-native value into a storable format (e.g. string, JSON).

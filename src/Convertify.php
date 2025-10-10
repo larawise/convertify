@@ -80,11 +80,11 @@ class Convertify implements ConvertifyContract
      * Register a converter with a named alias.
      *
      * @param string $alias
-     * @param Converter $converter
+     * @param <class-string> $converter
      *
      * @return void
      */
-    public function extend($alias, Converter $converter)
+    public function extend($alias, $converter)
     {
         $this->converters[$alias] = $converter;
     }
