@@ -1,6 +1,6 @@
 <?php
 
-namespace Larawise\Convertify;
+namespace Larawise\Convertify\Converter;
 
 use Exception;
 use Illuminate\Support\Facades\Crypt;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Larawise\Convertify;
+namespace Larawise\Convertify\Converter;
 
 use Larawise\Convertify\Contracts\ConverterContract as Converter;
 
@@ -72,5 +72,15 @@ class StackConverter implements Converter
         }
 
         return $value;
+    }
+
+    public function shouldCast($value)
+    {
+        // TODO: Implement shouldCast() method.
+    }
+
+    public function shouldUncast($value)
+    {
+        // TODO: Implement shouldUncast() method.
     }
 }
