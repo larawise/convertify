@@ -1,0 +1,52 @@
+{
+    "name"                  : "larawise/convertify",
+    "type"                  : "package",
+    "description"           : "Convertify – Cast anything, anywhere — your way.",
+    "keywords"              : ["converter","cast","uncast","alias","type-safe","extensible","framework-agnostic","context-aware","formatter","semantic","larawise","convertify","srylius"],
+    "license"               : "MIT",
+    "homepage"              : "https://larawise.com/",
+
+    "authors"               : [{
+        "name"            : "Selçuk Çukur",
+        "email"           : "hk@selcukcukur.com.tr",
+        "homepage"        : "https://selcukcukur.com.tr"
+    }],
+
+    "support"               : {
+        "source"          : "https://github.com/larawise/convertify",
+        "issues"          : "https://github.com/larawise/convertify/issues",
+        "docs"            : "https://docs.larawise.com"
+    },
+
+    "require"               : {
+        "php"                               : "^8.2|^8.3|^8.4"
+    },
+
+    "autoload"              : {
+        "psr-4"     : {
+            "Larawise\\Convertify\\"        : "./src"
+        }
+    },
+    "autoload-dev"          : {
+        "psr-4"     : {
+            "Larawise\\Tests\\"             : "./tests"
+        }
+    },
+
+    "extra"                 : {
+        "laravel"   : {
+            "providers"     : ["Larawise\\Convertify\\ConvertifyProvider"],
+            "aliases"       : { "Convertify": "Larawise\\Convertify\\Facades\\Convertify" }
+        }
+    },
+
+    "config"                : {
+        "optimize-autoloader"   : true,
+        "preferred-install"     : "dist",
+        "sort-packages"         : true,
+        "allow-plugins"         : {}
+    },
+
+    "minimum-stability"     : "dev",
+    "prefer-stable"         : true
+}
