@@ -27,6 +27,18 @@ class Convertify implements ConvertifyContract
     protected $converters = [];
 
     /**
+     * Create a new convertify instance.
+     *
+     * @param array<string, Converter> $converters
+     *
+     * @return void
+     */
+    public function __construct(array $converters = [])
+    {
+        $this->converters = $converters;
+    }
+
+    /**
      * Convert a raw external value into its appropriate PHP-native type.
      *
      * @param string $key

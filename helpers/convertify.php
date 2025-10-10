@@ -5,14 +5,11 @@ use Larawise\Convertify\Exceptions\ConvertifyException;
 
 if (! function_exists('convertify')) {
     /**
-     * Get / set the specified setting value.
-     *
-     * @param array<string, mixed>|string|null $key
-     * @param mixed $default
+     * Resolve the Convertify service from the container.
      *
      * @return ConvertifyContract
      */
-    function convertify($key = null, $default = null)
+    function convertify()
     {
         return app('convertify');
     }
