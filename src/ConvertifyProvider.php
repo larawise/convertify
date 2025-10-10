@@ -42,7 +42,7 @@ class ConvertifyProvider extends PackagifyProvider
     {
         // Register a shared binding in the container.
         $this->app->singleton(
-            'convertify', new Convertify(
+            'convertify', fn () => new Convertify(
             $this->app->make('config')->get('convertify.converters', [])
         ));
     }
