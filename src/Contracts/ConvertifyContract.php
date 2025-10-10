@@ -18,31 +18,32 @@ use Closure;
 interface ConvertifyContract
 {
     /**
-     * Convert a raw external value into its appropriate PHP-native type.
-     *
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    public function cast($value);
-
-    /**
      * Get a converter instance by name.
      *
      * @param string|null $name
      *
      * @return ConverterContract
      */
-    public function converter(string $name = null);
+    public function converter($name = null);
 
     /**
-     * Convert a PHP-native value into a storable format (e.g. string, JSON).
+     * Convert a raw external value into its appropriate PHP-native type.
      *
      * @param mixed $value
      *
      * @return mixed
      */
-    public function uncast($value);
+    public function cast($value, $report = false);
+
+    /**
+     * Convert a PHP-native value into a storable format (e.g. string, JSON).
+     *
+     * @param mixed $value
+     * @param bool $report
+     *
+     * @return mixed
+     */
+    public function uncast($value, $report = false);
 
     /**
      * Register a custom converter creator.

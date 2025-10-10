@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static mixed uncast(mixed $value, bool $report = false)
  * @method static bool shouldUncast(mixed $value, bool $report = false)
  *
- * @see \Larawise\Convertify\ConvertifyManager
+ * @see \Larawise\Convertify\Convertify
  */
 class Convertify extends Facade
 {

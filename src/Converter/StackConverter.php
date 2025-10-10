@@ -39,18 +39,15 @@ class StackConverter implements Converter
     /**
      * Convert a raw external value into its appropriate PHP-native type.
      *
-     *
      * @param mixed $value
      * @param false $report
+     *
      * @return mixed
      */
     public function cast($value, $report = false)
     {
         foreach ($this->chain as $converter) {
-            // Only apply the converter if it declares support for this value.
-            if ($converter->shouldCast($value, $report)) {
-                $value = $converter->cast($value, $report);
-            }
+            $value = $converter->cast($value, $report);
         }
 
         return $value;
@@ -59,18 +56,15 @@ class StackConverter implements Converter
     /**
      * Convert a PHP-native value into a storable format (e.g. string, JSON).
      *
-     *
      * @param mixed $value
      * @param false $report
+     *
      * @return mixed
      */
     public function uncast($value, $report = false)
     {
         foreach ($this->chain as $converter) {
-            // Only apply the converter if it declares support for this value.
-            if ($converter->shouldUncast($value, $report)) {
-                $value = $converter->uncast($value, $report);
-            }
+            $value = $converter->uncast($value, $report);
         }
 
         return $value;
@@ -78,11 +72,11 @@ class StackConverter implements Converter
 
     public function shouldCast($value, $report = false)
     {
-        // TODO: Implement shouldCast() method.
+        return true;
     }
 
     public function shouldUncast($value, $report = false)
     {
-        // TODO: Implement shouldUncast() method.
+        return true;
     }
 }
