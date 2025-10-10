@@ -15,15 +15,14 @@ use Illuminate\Support\Facades\Facade;
  *
  * @see https://docs.larawise.com/ Larawise : Docs
  *
- * @method static mixed cast(string $key, mixed $value)
- * @method static mixed castWithAlias(string $alias, string $key, mixed $value)
- * @method static mixed extend(string $alias, \Larawise\Convertify\Contracts\ConverterContract $converter)
- * @method static mixed uncast(string $key, mixed $value)
- * @method static mixed uncastWithAlias(string $alias, string $key, mixed $value)
- * @method static array aliases()
- * @method static array all()
+ * @method static \Larawise\Convertify\Contracts\ConverterContract converter(string $name = null)
+ * @method static mixed cast(mixed $value)
+ * @method static bool shouldCast(mixed $value)
+ * @method static \Larawise\Convertify\ConvertifyManager extend($converter, \Closure $callback)
+ * @method static mixed uncast(mixed $value)
+ * @method static bool shouldUncast(mixed $value)
  *
- * @see \Larawise\Convertify\Convertify
+ * @see \Larawise\Convertify\ConvertifyManager
  */
 class Convertify extends Facade
 {

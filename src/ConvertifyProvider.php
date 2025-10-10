@@ -2,6 +2,7 @@
 
 namespace Larawise\Convertify;
 
+use Larawise\Convertify\Contracts\ConvertifyContract;
 use Larawise\Packagify\Packagify;
 use Larawise\Packagify\PackagifyProvider;
 
@@ -40,10 +41,8 @@ class ConvertifyProvider extends PackagifyProvider
      */
     public function packageRegistering()
     {
-        // Register a shared binding in the container.
         $this->app->singleton(
-            'convertify', fn () => new Convertify(
-            $this->app->make('config')->get('convertify.converters', [])
-        ));
+            'convertify', fn ($app) => new ConvertifyManager($app)
+        );
     }
 }

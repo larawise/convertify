@@ -2,7 +2,7 @@
 
 namespace Larawise\Convertify\Contracts;
 
-use Larawise\Convertify\Exceptions\ConvertifyException;
+use Closure;
 
 /**
  * Srylius - The ultimate symphony for technology architecture!
@@ -20,69 +20,37 @@ interface ConvertifyContract
     /**
      * Convert a raw external value into its appropriate PHP-native type.
      *
-     * @param string $key
      * @param mixed $value
      *
      * @return mixed
      */
-    public function cast($key, $value);
+    public function cast($value);
 
     /**
-     * Cast a raw value into a PHP-native format using a specific converter alias.
+     * Get a converter instance by name.
      *
-     * @param string $alias
-     * @param string $key
-     * @param mixed $value
+     * @param string|null $name
      *
-     * @return mixed
-     * @throws ConvertifyException
+     * @return ConverterContract
      */
-    public function castWithAlias($alias, $key, $value);
-
-    /**
-     * Register a converter with a named alias.
-     *
-     * @param string $alias
-     * @param <class-string> $converter
-     *
-     * @return void
-     */
-    public function extend($alias, $converter);
+    public function converter(string $name = null);
 
     /**
      * Convert a PHP-native value into a storable format (e.g. string, JSON).
      *
-     * @param string $key
      * @param mixed $value
      *
      * @return mixed
-     * @throws ConvertifyException
      */
-    public function uncast($key, $value);
+    public function uncast($value);
 
     /**
-     * Serialize a PHP-native value using a specific converter alias.
+     * Register a custom converter creator.
      *
-     * @param string $alias
-     * @param string $key
-     * @param mixed $value
+     * @param string $converter
+     * @param Closure $callback
      *
-     * @return mixed
-     * @throws ConvertifyException
+     * @return $this
      */
-    public function uncastWithAlias($alias, $key, $value);
-
-    /**
-     * Get a list of all registered converter aliases.
-     *
-     * @return string[]
-     */
-    public function aliases();
-
-    /**
-     * Get all registered converters as an associative array.
-     *
-     * @return array<string, ConverterContract>
-     */
-    public function all();
+    public function extend($converter, Closure $callback);
 }
