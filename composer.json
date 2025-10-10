@@ -20,8 +20,8 @@
 
     "require"               : {
         "php"                               : "^8.2|^8.3|^8.4",
-        "larawise/packagify"                : "dev-main",
-        "laravel/framework"                 : "^12.0"
+        "larawise/larawise"                 : "dev-main",
+        "larawise/packagify"                : "dev-main"
     },
 
     "autoload"              : {
