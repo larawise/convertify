@@ -1,6 +1,6 @@
 <?php
 
-namespace Larawise\Settingfy\Facades;
+namespace Larawise\Convertify\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
