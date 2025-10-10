@@ -107,7 +107,7 @@ class ConvertifyManager
         }
 
         // Build the method name for the native driver creator (e.g. 'createJsonDriver').
-        $converterMethod = 'create' . ucfirst($converter) . 'Driver';
+        $converterMethod = 'create' . ucfirst($converter) . 'Converter';
 
         // If the method doesn't exist, this driver is not supported.
         if (! method_exists($this, $converterMethod)) {
@@ -118,7 +118,7 @@ class ConvertifyManager
         return $this->{$converterMethod}($config, $name);
     }
 
-    public function createStackDriver($config, $name)
+    public function createStackConverter($config, $name)
     {
         $aliases = $config['stack'] ?? [];
 
@@ -133,6 +133,11 @@ class ConvertifyManager
         }
 
         return new StackConverter($chain);
+    }
+
+    public function createCryptConverter($config, $name)
+    {
+        return new CryptConverter;
     }
 
     /**
