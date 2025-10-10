@@ -28,7 +28,9 @@ class ConvertifyProvider extends PackagifyProvider
     public function configure(Packagify $package)
     {
         $package->name('convertify')
-            ->description('Convertify - Cast anything, anywhere — your way.');
+            ->description('Convertify - Cast anything, anywhere — your way.')
+            ->hasHelpers()
+            ->hasConfigurations();
     }
 
     /**
@@ -41,7 +43,7 @@ class ConvertifyProvider extends PackagifyProvider
         // Register a shared binding in the container.
         $this->app->singleton(
             'convertify', new Convertify(
-            $this->app->make('config')->get('convertify.converters')
+            $this->app->make('config')->get('convertify.converters', [])
         ));
     }
 }
