@@ -5,7 +5,8 @@ namespace Larawise\Convertify;
 use Closure;
 use Illuminate\Contracts\Foundation\Application;
 use Larawise\Convertify\Contracts\ConverterContract;
-use Larawise\Convertify\Contracts\ConvertifyContract;
+use Larawise\Convertify\Converter\CryptConverter;
+use Larawise\Convertify\Converter\StackConverter;
 use Larawise\Convertify\Exceptions\ConvertifyException;
 
 /**
