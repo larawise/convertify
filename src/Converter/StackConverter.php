@@ -72,11 +72,23 @@ class StackConverter implements Converter
 
     public function shouldCast($value, $report = false)
     {
-        return true;
+        foreach ($this->chain as $converter) {
+            if ($converter->shouldCast($value, $report)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function shouldUncast($value, $report = false)
     {
-        return true;
+        foreach ($this->chain as $converter) {
+            if ($converter->shouldUncast($value, $report)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
