@@ -5,6 +5,7 @@ namespace Larawise\Convertify;
 use Closure;
 use Illuminate\Contracts\Foundation\Application;
 use Larawise\Convertify\Contracts\ConverterContract;
+use Larawise\Convertify\Contracts\FactoryContract;
 use Larawise\Convertify\Converter\CryptConverter;
 use Larawise\Convertify\Converter\StackConverter;
 use Larawise\Convertify\Exceptions\ConvertifyException;
@@ -20,7 +21,7 @@ use Larawise\Convertify\Exceptions\ConvertifyException;
  *
  * @see https://docs.larawise.com/ Larawise : Docs
  */
-class ConvertifyManager
+class ConvertifyManager implements FactoryContract
 {
     /**
      * The application instance.
@@ -138,7 +139,7 @@ class ConvertifyManager
 
     public function createCryptConverter($config, $name)
     {
-        return new CryptConverter;
+        return new CryptConverter($config);
     }
 
     /**

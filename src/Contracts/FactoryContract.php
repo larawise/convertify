@@ -15,7 +15,7 @@ use Closure;
  *
  * @see https://docs.larawise.com/ Larawise : Docs
  */
-interface ConvertifyContract
+interface FactoryContract
 {
     /**
      * Get a converter instance by name.
@@ -25,25 +25,6 @@ interface ConvertifyContract
      * @return ConverterContract
      */
     public function converter($name = null);
-
-    /**
-     * Convert a raw external value into its appropriate PHP-native type.
-     *
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    public function cast($value, $report = false);
-
-    /**
-     * Convert a PHP-native value into a storable format (e.g. string, JSON).
-     *
-     * @param mixed $value
-     * @param bool $report
-     *
-     * @return mixed
-     */
-    public function uncast($value, $report = false);
 
     /**
      * Register a custom converter creator.

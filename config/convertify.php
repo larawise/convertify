@@ -4,12 +4,14 @@ return [
     'default'                                   => 'stack',
 
     'converters'                                => [
-        'crypt'     => [
-            'converter' => 'crypt'
-        ],
         'stack'     => [
-            'converter' => 'stack',
-            'stack'     => ['crypt']
+            'converter'     => 'stack',
+            'stack'         => ['crypt'],
+            'report'        => false,
+        ],
+        'crypt'     => [
+            'converter'     => 'crypt',
+            'report'        => false,
         ]
     ],
 ];

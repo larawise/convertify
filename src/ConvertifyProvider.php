@@ -2,7 +2,7 @@
 
 namespace Larawise\Convertify;
 
-use Larawise\Convertify\Contracts\ConvertifyContract;
+use Larawise\Convertify\Contracts\FactoryContract;
 use Larawise\Packagify\Packagify;
 use Larawise\Packagify\PackagifyProvider;
 
@@ -42,11 +42,7 @@ class ConvertifyProvider extends PackagifyProvider
     public function packageRegistering()
     {
         $this->app->singleton(
-            'convertify.manager', fn ($app) => new ConvertifyManager($app)
-        );
-
-        $this->app->singleton(
-            'convertify', fn ($app) => new Convertify($app['convertify.manager'])
+            'convertify', fn ($app) => new ConvertifyManager($app)
         );
     }
 }

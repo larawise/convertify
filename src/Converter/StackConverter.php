@@ -2,8 +2,6 @@
 
 namespace Larawise\Convertify\Converter;
 
-use Larawise\Convertify\Contracts\ConverterContract as Converter;
-
 /**
  * Srylius - The ultimate symphony for technology architecture!
  *
@@ -15,7 +13,7 @@ use Larawise\Convertify\Contracts\ConverterContract as Converter;
  *
  * @see https://docs.larawise.com/ Larawise : Docs
  */
-class StackConverter implements Converter
+class StackConverter extends Converter
 {
     /**
      * List of converters to apply in sequence.
@@ -27,27 +25,28 @@ class StackConverter implements Converter
     /**
      * Create a new stack converter instance.
      *
-     * @param array $chain
+     * @param Converter[] $chain
      *
      * @return void
      */
     public function __construct(array $chain = [])
-{
-    $this->chain = $chain;
-}
+    {
+        parent::__construct($chain);
+
+        $this->chain = $chain;
+    }
 
     /**
      * Convert a raw external value into its appropriate PHP-native type.
      *
      * @param mixed $value
-     * @param false $report
      *
      * @return mixed
      */
-    public function cast($value, $report = false)
+    public function cast($value)
     {
         foreach ($this->chain as $converter) {
-            $value = $converter->cast($value, $report);
+            $value = $converter->cast($value);
         }
 
         return $value;
@@ -57,23 +56,29 @@ class StackConverter implements Converter
      * Convert a PHP-native value into a storable format (e.g. string, JSON).
      *
      * @param mixed $value
-     * @param false $report
      *
      * @return mixed
      */
-    public function uncast($value, $report = false)
+    public function uncast($value)
     {
         foreach ($this->chain as $converter) {
-            $value = $converter->uncast($value, $report);
+            $value = $converter->uncast($value);
         }
 
         return $value;
     }
 
-    public function shouldCast($value, $report = false)
+    /**
+     * Determine whether this converter should handle casting for the given key and value.
+     *
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function shouldCast($value)
     {
         foreach ($this->chain as $converter) {
-            if ($converter->shouldCast($value, $report)) {
+            if ($converter->shouldCast($value)) {
                 return true;
             }
         }
@@ -81,10 +86,17 @@ class StackConverter implements Converter
         return false;
     }
 
-    public function shouldUncast($value, $report = false)
+    /**
+     * Determine whether this converter should handle uncasting for the given key and value.
+     *
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function shouldUncast($value)
     {
         foreach ($this->chain as $converter) {
-            if ($converter->shouldUncast($value, $report)) {
+            if ($converter->shouldUncast($value)) {
                 return true;
             }
         }

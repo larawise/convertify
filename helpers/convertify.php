@@ -1,6 +1,6 @@
 <?php
 
-use Larawise\Convertify\Contracts\ConvertifyContract;
+use Larawise\Convertify\Contracts\FactoryContract;
 
 if (! function_exists('convertify')) {
     /**
@@ -8,7 +8,7 @@ if (! function_exists('convertify')) {
      *
      * @param string|null $converter
      *
-     * @return ConvertifyContract
+     * @return FactoryContract
      */
     function convertify($converter = null)
     {
@@ -25,14 +25,13 @@ if (! function_exists('cast')) {
      * Convert a raw external value into its appropriate PHP-native type.
      *
      * @param mixed $value
-     * @param bool $report
      * @param string|null $converter
      *
      * @return mixed
      */
-    function cast($value, $report = false, $converter = null)
+    function cast($value, $converter = null)
     {
-        return convertify($converter)->cast($value, $report);
+        return convertify($converter)->cast($value);
     }
 }
 
@@ -41,13 +40,12 @@ if (! function_exists('uncast')) {
      * Convert a raw external value into its appropriate PHP-native type.
      *
      * @param mixed $value
-     * @param bool $report
      * @param string|null $converter
      *
      * @return mixed
      */
-    function uncast($value, $report = false, $converter = null)
+    function uncast($value, $converter = null)
     {
-        return convertify($converter)->uncast($value, $report);
+        return convertify($converter)->uncast($value);
     }
 }

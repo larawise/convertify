@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Larawise\Convertify\Contracts\ConverterContract converter(string $name = null)
  * @method static mixed cast(mixed $value, bool $report = false)
  * @method static bool shouldCast(mixed $value, bool $report = false)
- * @method static \Larawise\Convertify\ConvertifyManager extend($converter, \Closure $callback)
+ * @method static \Larawise\Convertify\Contracts\FactoryContract extend($converter, \Closure $callback)
  * @method static mixed uncast(mixed $value, bool $report = false)
  * @method static bool shouldUncast(mixed $value, bool $report = false)
  *
- * @see \Larawise\Convertify\Convertify
+ * @see \Larawise\Convertify\Contracts\FactoryContract
  */
 class Convertify extends Facade
 {
