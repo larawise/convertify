@@ -42,7 +42,7 @@ class ConvertifyProvider extends PackagifyProvider
     public function packageRegistering()
     {
         $this->app->singleton(
-            'convertify', fn ($app) => new ConvertifyManager($app)
+            FactoryContract::class, fn ($app) => new ConvertifyManager($app)
         );
     }
 }

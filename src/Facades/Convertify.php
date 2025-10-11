@@ -3,6 +3,7 @@
 namespace Larawise\Convertify\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use Larawise\Convertify\Contracts\FactoryContract;
 
 /**
  * Srylius - The ultimate symphony for technology architecture!
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static bool shouldUncast(mixed $value, bool $report = false)
  *
  * @see \Larawise\Convertify\Contracts\FactoryContract
+ * @see \Larawise\Convertify\Contracts\ConverterContract
  */
 class Convertify extends Facade
 {
@@ -33,6 +35,6 @@ class Convertify extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'convertify';
+        return FactoryContract::class;
     }
 }

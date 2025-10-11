@@ -1,22 +1,23 @@
 <?php
 
+use Larawise\Convertify\Contracts\ConverterContract;
 use Larawise\Convertify\Contracts\FactoryContract;
 
 if (! function_exists('convertify')) {
     /**
-     * Resolve the Convertify service from the container.
+     * Get a converter instance by name.
      *
      * @param string|null $converter
      *
-     * @return FactoryContract
+     * @return FactoryContract|ConverterContract
      */
     function convertify($converter = null)
     {
         if (is_null($converter)) {
-            return app('convertify');
+            return app(FactoryContract::class);
         }
 
-        return app('convertify')->converter($converter);
+        return app(FactoryContract::class)->converter($converter);
     }
 }
 
@@ -37,7 +38,7 @@ if (! function_exists('cast')) {
 
 if (! function_exists('uncast')) {
     /**
-     * Convert a raw external value into its appropriate PHP-native type.
+     * Convert a PHP-native value into a storable format (e.g. string, JSON).
      *
      * @param mixed $value
      * @param string|null $converter

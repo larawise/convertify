@@ -75,7 +75,7 @@ class ConvertifyManager implements FactoryContract
      *
      * @return ConverterContract
      */
-    public function converter(string $name = null)
+    public function converter($name = null)
     {
         $name = $name ?: $this->getDefaultConverter();
 
