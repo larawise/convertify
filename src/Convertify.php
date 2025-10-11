@@ -51,7 +51,7 @@ class Convertify implements ConvertifyContract
      */
     public function cast($value, $report = false)
     {
-        if ($this->convertify->shouldBeCast($value, $report)) {
+        if ($this->convertify->shouldCast($value, $report)) {
             $value = $this->convertify->cast($value, $report);
         }
 
@@ -68,7 +68,7 @@ class Convertify implements ConvertifyContract
      */
     public function uncast($value, $report = false)
     {
-        if ($this->convertify->shouldBeUncast($value, $report)) {
+        if ($this->convertify->shouldUncast($value, $report)) {
             $value = $this->convertify->uncast($value, $report);
         }
 
