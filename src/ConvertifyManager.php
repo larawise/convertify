@@ -123,11 +123,6 @@ class ConvertifyManager implements FactoryContract
     public function createStackConverter($config, $name)
     {
         $aliases = $config['stack'] ?? [];
-
-        if (! is_array($aliases) || empty($aliases)) {
-            throw new ConvertifyException("Stack converter [$name] must define a non-empty 'stack' array.");
-        }
-
         $chain = [];
 
         foreach ($aliases as $alias) {
